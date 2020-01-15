@@ -24,6 +24,7 @@ app.get('/downloadmp3', (req,res) => {
 	  console.log('title:', info.title);
 	  console.log('rating:', info.avg_rating);
 	  console.log('uploaded by:', info.author.name);
+	  console.log(info)
 	  res.header('Content-Disposition', `attachment; filename="${info.title.substring(0,30)}.mp3"`);
 	});
 

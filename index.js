@@ -47,8 +47,8 @@ app.get('/downloadmp4', (req,res) => {
 
 	  //res.header('Content-Disposition', `attachment; filename="${info.title.substring(0,30)}.mp4"`);
 	 res.set({
-        'Content-Length': '1191462',
-        'Content-Disposition': 'attachment; filename=' + "${info.title.substring(0,30)}.mp4"
+        'Content-Length': '93076469',
+        'Content-Disposition': 'attachment; filename=' + `"${info.title.substring(0,30)}.mp4"`
       });
 	});
 

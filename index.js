@@ -3,6 +3,8 @@ const cors = require('cors');
 const ytdl = require('ytdl-core');
 const path = require('path');
 const app = express();
+const https = require('https');
+const fs = require('fs');
 const port = process.env.PORT || 3000;
 
 var file_name;
@@ -50,6 +52,10 @@ app.get('/downloadmp4', (req,res) => {
 	  console.log('video download url:', element.url);
 	  console.log('');
 	});
+	const file = fs.createWriteStream("video.mp4");
+	const request = https.get(info.formats[4].url, function(response) {
+  	response.pipe(file);
+	});
 	  //console.log(info)
 	  //res.header('Content-Disposition', `attachment; filename="${info.title.substring(0,30)}.mp4"`);
 	 res.set({
@@ -60,7 +66,7 @@ app.get('/downloadmp4', (req,res) => {
 
 	// res.header('Content-Disposition', 'attachment; filename="video.mp4"');
 	
-	ytdl(url, {
-		format: 'mp4'
-	}).pipe(res);
+	//ytdl(url, {
+	//	format: 'mp4'
+	//}).pipe(res);
 });

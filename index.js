@@ -31,14 +31,14 @@ app.get('/downloadmp3', (req,res) => {
 	    console.log("meow")
 	}) 
 	
-	ytdl.getInfo(url, (err, info) => {
-	  if (err) throw err;
-	  console.log('title:', info.title);
-	  console.log('rating:', info.avg_rating);
-	  console.log('uploaded by:', info.author.name);
+	//ytdl.getInfo(url, (err, info) => {
+	//  if (err) throw err;
+	//  console.log('title:', info.title);
+	//  console.log('rating:', info.avg_rating);
+	//  console.log('uploaded by:', info.author.name);
 	  //console.log(info)
-	  res.header('Content-Disposition', `attachment; filename="${info.title.substring(0,30)}.mp3"`);
-	});
+	//  res.header('Content-Disposition', `attachment; filename="${info.title.substring(0,30)}.mp3"`);
+	//});
 
 	//res.header('Content-Disposition', `attachment; filename="${file_name}.mp3"`);
 	//ytdl(url, {

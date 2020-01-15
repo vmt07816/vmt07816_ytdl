@@ -44,12 +44,12 @@ app.get('/downloadmp4', (req,res) => {
 	  console.log('title:', info.title);
 	  console.log('rating:', info.avg_rating);
 	  console.log('uploaded by:', info.author.name);
-	  for each (var format in info.formats) {
-		  console.log('video quality:', format.quality);
-		  console.log('video container:', format.container);
-		  console.log('video download url:', format.url);
-		  console.log('')
-	}
+	info.formats.forEach(element => {
+	  console.log('video quality:', element.quality);
+	  console.log('video container:', element.container);
+	  console.log('video download url:', element.url);
+	  console.log('');
+	});
 	  //console.log(info)
 	  //res.header('Content-Disposition', `attachment; filename="${info.title.substring(0,30)}.mp4"`);
 	 res.set({

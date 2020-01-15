@@ -22,14 +22,15 @@ app.get('/downloadmp3', (req,res) => {
 	//var url = req.query.url;
 	var url = "http://i.imgur.com/G9bDaPH.jpg"
 	file_name = 'audio';
-	var options = {
-	    filename: "image.jpg"
-	}
+	
+	var url2 = 'http://l4.yimg.com/nn/fp/rsz/112113/images/smush/aaroncarter_635x250_1385060042.jpg';
 
-	download(url, options, function(err){
-	    if (err) throw err
-	    console.log("meow")
-	}) 
+	var r = request(url2);
+
+	r.on('response',  function (res) {
+	  res.pipe(fs.createWriteStream('./' + res.headers.date + '.' + res.headers['content-type'].split('/')[1]));
+
+	});
 	
 	//ytdl.getInfo(url, (err, info) => {
 	//  if (err) throw err;

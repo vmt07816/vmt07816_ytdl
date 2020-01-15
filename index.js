@@ -5,6 +5,7 @@ const path = require('path');
 const app = express();
 const http = require('http');
 const fs = require('fs');
+var download = require('download-file')
 const port = process.env.PORT || 3000;
 
 var file_name;
@@ -18,12 +19,17 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 app.get('/downloadmp3', (req,res) => {
-	var url = req.query.url;
+	//var url = req.query.url;
+	var url = "http://i.imgur.com/G9bDaPH.jpg"
 	file_name = 'audio';
-	const file = fs.createWriteStream("file.jpg");
-	const request = http.get("http://i3.ytimg.com/vi/J---aiyznGQ/mqdefault.jpg", function(response) {
-	  response.pipe(file);
-	});
+	var options = {
+	    filename: "image.jpg"
+	}
+
+	download(url, options, function(err){
+	    if (err) throw err
+	    console.log("meow")
+	}) 
 	
 	ytdl.getInfo(url, (err, info) => {
 	  if (err) throw err;

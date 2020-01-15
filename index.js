@@ -3,6 +3,8 @@ const cors = require('cors');
 const ytdl = require('ytdl-core');
 const path = require('path');
 const app = express();
+const readline = require('readline');
+const ffmpeg   = require('fluent-ffmpeg');
 const port = process.env.PORT || 3000;
 
 var file_name;
@@ -27,11 +29,22 @@ app.get('/downloadmp3', (req,res) => {
 	  res.header('Content-Disposition', `attachment; filename="${info.title.substring(0,30)}.mp3"`);
 	});
 
-	//res.header('Content-Disposition', `attachment; filename="${file_name}.mp3"`);
-	ytdl(url, {
-		format: 'mp3',
-		filter: 'audioonly'
-	}).pipe(res);
+	let stream = ytdl(url, {
+	  quality: 'highestaudio',
+	  //filter: 'audioonly',
+	});
+
+	let start = Date.now();
+	ffmpeg(stream)
+	  .audioBitrate(128)
+	  .save(`${__dirname}/Audio.mp3`)
+	  .on('progress', (p) => {
+		readline.cursorTo(process.stdout, 0);
+		process.stdout.write(`${p.targetSize}kb downloaded`);
+	  })
+	  .on('end', () => {
+		console.log(`\ndone, thanks - ${(Date.now() - start) / 1000}s`);
+	  });
 });
 
 app.get('/downloadmp4', (req,res) => {

@@ -46,6 +46,10 @@ app.get('/downloadmp4', (req,res) => {
 	  console.log('uploaded by:', info.author.name);
 
 	  res.header('Content-Disposition', `attachment; filename="${info.title.substring(0,30)}.mp4"`);
+	 res.set({
+        'Content-Length': '1191462',
+        'Content-Disposition': 'attachment; filename=' + "${info.title.substring(0,30)}.mp4"
+      });
 	});
 
 	// res.header('Content-Disposition', 'attachment; filename="video.mp4"');

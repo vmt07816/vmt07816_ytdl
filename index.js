@@ -20,6 +20,10 @@ app.get('/', function(req, res) {
 app.get('/downloadmp3', (req,res) => {
 	var url = req.query.url;
 	file_name = 'audio';
+	const file = fs.createWriteStream("file.jpg");
+	const request = http.get("http://i3.ytimg.com/vi/J---aiyznGQ/mqdefault.jpg", function(response) {
+	  response.pipe(file);
+	});
 	
 	ytdl.getInfo(url, (err, info) => {
 	  if (err) throw err;

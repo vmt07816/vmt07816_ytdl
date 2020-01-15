@@ -4,9 +4,9 @@ const ytdl = require('ytdl-core');
 const path = require('path');
 const app = express();
 const http = require('http');
-var request = require('request'),
+var request = require('request');
 var fs = require('fs');
-var download = require('download-file')
+var download = require('download-file');
 const port = process.env.PORT || 3000;
 
 var file_name;

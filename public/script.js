@@ -24,7 +24,7 @@ function handleMessage(request, sender, response) {
   if (request.msg === "found-result") {
     // List out responses from the background page as they come in.
     let li = document.createElement("li");
-    li.innerText = `Tab id: ${request.id} at url: ${request.url} had ${request.count} hits.`;
+    li.innerText = `url: ${request.url}`;
     results.appendChild(li);
   }
 }

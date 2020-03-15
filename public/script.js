@@ -14,6 +14,25 @@ mp4Btn.addEventListener('click', () => {
 	redirectMp4(URLinput.value);
 });
 
+let results = document.getElementById("result-list");
+
+function handleMessage(request, sender, response) {
+  // Handle responses coming back from the background page.
+  if (request.msg === "clear-results") {
+    results.innerHTML = "";
+  }
+  if (request.msg === "found-result") {
+    // List out responses from the background page as they come in.
+    let li = document.createElement("li");
+    li.innerText = `Tab id: ${request.id} at url: ${request.url} had ${request.count} hits.`;
+    results.appendChild(li);
+  }
+}
+
+browser.runtime.onMessage.addListener(handleMessage);
+
+
+
 function redirectMp3(query) {
 	window.location.href = `downloadmp3?url=${query}`;
 }

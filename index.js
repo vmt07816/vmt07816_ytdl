@@ -25,8 +25,8 @@ app.get('/downloadmp3', (req,res) => {
 	//res.send('Got the response');
 	
 	res.send({
-      msg: "found-result",
-      url: url
+      "msg": "found-result",
+      "url": url
     });
 	
 });

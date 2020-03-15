@@ -22,6 +22,7 @@ app.get('/', function(req, res) {
 app.get('/downloadmp3', (req,res) => {
 	var url = req.query.url;
 	console.log(url);
+	res.send('Got the response')
 });
 
 app.get('/downloadmp4', (req,res) => {

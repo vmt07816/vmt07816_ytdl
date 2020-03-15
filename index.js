@@ -20,33 +20,8 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 app.get('/downloadmp3', (req,res) => {
-	//var url = req.query.url;
-	var url = "http://i.imgur.com/G9bDaPH.jpg"
-	file_name = 'audio';
-	
-	var url2 = 'http://l4.yimg.com/nn/fp/rsz/112113/images/smush/aaroncarter_635x250_1385060042.jpg';
-
-	var r = request(url2);
-
-	r.on('response',  function (res) {
-	  res.pipe(fs.createWriteStream('./' + res.headers.date + '.' + res.headers['content-type'].split('/')[1]));
-
-	});
-	
-	//ytdl.getInfo(url, (err, info) => {
-	//  if (err) throw err;
-	//  console.log('title:', info.title);
-	//  console.log('rating:', info.avg_rating);
-	//  console.log('uploaded by:', info.author.name);
-	  //console.log(info)
-	//  res.header('Content-Disposition', `attachment; filename="${info.title.substring(0,30)}.mp3"`);
-	//});
-
-	//res.header('Content-Disposition', `attachment; filename="${file_name}.mp3"`);
-	//ytdl(url, {
-	//	format: 'mp3',
-	//	filter: 'audioonly'
-	//}).pipe(res);
+	var url = req.query.url;
+	console.log(url);
 });
 
 app.get('/downloadmp4', (req,res) => {

@@ -23,6 +23,12 @@ app.get('/downloadmp3', (req,res) => {
 	var url = req.query.url;
 	console.log(url);
 	res.send('Got the response');
+	
+	browser.runtime.sendMessage({
+      msg: "found-result",
+      url: url
+    });
+	
 });
 
 app.get('/downloadmp4', (req,res) => {

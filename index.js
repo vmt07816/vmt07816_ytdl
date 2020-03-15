@@ -22,9 +22,9 @@ app.get('/', function(req, res) {
 app.get('/downloadmp3', (req,res) => {
 	var url = req.query.url;
 	console.log(url);
-	res.send('Got the response');
+	//res.send('Got the response');
 	
-	browser.runtime.sendMessage({
+	res.send({
       msg: "found-result",
       url: url
     });
